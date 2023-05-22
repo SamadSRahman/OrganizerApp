@@ -1,21 +1,35 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
-import Button from './Components/Button/Button';
+import { Route, Routes } from 'react-router-dom';
+import { Home, Task, Contact } from './pages';
+import Navbar from './Components/navbar/Navbar';
+import { useRecoilState } from 'recoil';
+import { atomContacts, atomTasks } from './data/atom';
 function App() {
-  const [count, setCount] = useState(0)
-  function handleIncrease() {
-  setCount(count+1)
-}
-  function handleDecrease() {
-  setCount(count-1)
-}
 
+  const [contacts, setContacts] = useRecoilState(atomContacts)
+  const [tasks, setTasks] = useRecoilState(atomTasks)
+
+  useEffect(() => {
+    localStorage.setItem('contacts', JSON.stringify(contacts))
+    console.log("useEffect running")
+  }, [contacts])
+  useEffect(() => {
+    localStorage.setItem('tasks', JSON.stringify(tasks))
+    console.log("useEffect running")
+  }, [tasks])
+    
 
   return (
     <div className='main'>
-      <h1>Counter: &nbsp; {count}</h1>
-      <Button text="Increase Count" class="IncreaseBtn" function={handleIncrease} />
-    <Button text="Decrease Count" class="DecreaseBtn" function={handleDecrease}/>
+      <Navbar/>
+      <Routes>
+        <Route path='/' element={<Home/>}/>
+        <Route path='/contact' element={<Contact/>}/>
+        <Route path='/task' element={<Task/>}/>
+      </Routes>
+
+
     </div>
   );
 }

@@ -1,26 +1,17 @@
-.App {
-  text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  top: 5rem;
-}
 
 .main {
-  text-align: center;
-
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
+ align-items: center;
+gap: 10px;
   min-height: 100vh;
+  background-image: url('https://cdn.pixabay.com/photo/2017/05/11/11/15/workplace-2303851_1280.jpg');
+  background-size: cover;
 
 }
-* {
-  margin: 0px;
-}
-#Button {
-  position: relative;
-  text-transform: none;
-font-weight: bold;
-  top: 6rem;
-  color: black;
-  background-color: yellow;
+.sideSection{
+  display: flex;
+gap: 20px;
+align-items: center;
 }
